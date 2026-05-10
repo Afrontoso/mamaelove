@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Dia das Mães</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blush: #f5d5c8;
+    --rose: #c97b6e;
+    --burgundy: #7a3b3b;
+    --cream: #fdf6f0;
+    --gold: #c9a96e;
+    --ink: #2d1f1f;
+  }
+
+  body {
+    background: #e8d5c4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    background: var(--cream);
+    max-width: 680px;
+    width: 100%;
+    padding: 70px 70px 60px;
+    box-shadow:
+      0 4px 6px rgba(122,59,59,0.06),
+      0 20px 60px rgba(122,59,59,0.14),
+      0 0 0 1px rgba(201,169,110,0.2);
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Decorative corner */
+  .card::before, .card::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.4;
+  }
+  .card::before { top: 18px; left: 18px; border-width: 1px 0 0 1px; }
+  .card::after  { bottom: 18px; right: 18px; border-width: 0 1px 1px 0; }
+
+  /* Flower decoration */
+  .flowers {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 12px;
+    margin-bottom: 28px;
+    animation: fadeUp 1s 0.2s ease both;
+    opacity: 0;
+  }
+
+  .tag {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 14px;
+    animation: fadeUp 1s 0.3s ease both;
+    opacity: 0;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--burgundy);
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    animation: fadeUp 1s 0.4s ease both;
+    opacity: 0;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    animation: fadeUp 1s 0.5s ease both;
+    opacity: 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
+  .divider span { color: var(--gold); font-size: 1.1rem; }
+
+  .body-text {
+    color: var(--ink);
+    font-size: 1.18rem;
+    line-height: 1.95;
+    font-weight: 300;
+    animation: fadeUp 1s 0.6s ease both;
+    opacity: 0;
+  }
+
+  .body-text p { margin-bottom: 1.4em; }
+  .body-text em { color: var(--burgundy); font-style: italic; }
+  .body-text strong { font-weight: 400; color: var(--rose); }
+
+  .family-photo {
+    margin: 32px -20px;
+    text-align: center;
+  }
+  .family-photo img {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 4px;
+    box-shadow: 0 8px 40px rgba(122,59,59,0.15);
+  }
+
+  .child-block {
+    border-left: 2px solid var(--blush);
+    padding-left: 20px;
+    margin: 28px 0;
+    font-style: italic;
+    color: var(--burgundy);
+  }
+  .child-block .child-name {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-style: normal;
+    color: var(--rose);
+    margin-bottom: 6px;
+  }
+
+  .signature {
+    margin-top: 48px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    animation: fadeUp 1s 0.8s ease both;
+    opacity: 0;
+  }
+  .signature .with-love {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 10px;
+  }
+  .signature .names {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--burgundy);
+    line-height: 1.4;
+    text-align: right;
+  }
+
+  .footer-flower {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1.2rem;
+    color: var(--gold);
+    opacity: 0.5;
+    letter-spacing: 8px;
+    animation: fadeUp 1s 1s ease both;
+  }
+
+  @media (max-width: 560px) {
+    .card { padding: 50px 36px 44px; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="flowers">🌸 🌷 🌸</div>
+  <p class="tag">12 de maio de 2026</p>
+  <h1>Feliz Dia das Mães</h1>
+
+  <div class="divider"><span>✦</span></div>
+
+  <div class="body-text">
+    <p>Meu amor,</p>
+
+    <p>
+      Existem palavras que surgem com facilidade, e outras que precisam de toda a ternura do coração para serem ditas. Hoje, neste dia tão especial, é com essa ternura que me sento, com nossos filhos do lado, para te dizer o quanto você é <em>extraordinária</em>.
+    </p>
+
+    <p>
+      Ser mãe não é apenas cuidar. É estar presente quando o mundo pesa, é sorrir mesmo quando o cansaço fala mais alto, é criar um lar onde o amor é sentido em cada detalhe. E você faz tudo isso com uma <strong>graça que nos encanta todos os dias</strong>.
+    </p>
+
+    <div class="family-photo">
+      <img src="familia.png" alt="Nossa família" />
+    </div>
+
+    <p>
+      Ver você com o Tito, respondendo cada pergunta curiosa e estranha dele com paciência e um sorriso no rosto, como se não houvesse nada mais importante no mundo naquele momento, e agora com a Luna, tão pequenininha e já tão amada, meu coração transborda de gratidão por ter você como companheira desta vida e como a mãe dos nossos filhos.
+    </p>
+
+    <p>
+      Obrigado por tudo que você faz pela gente todos os dias, mesmo quando ninguém está vendo. <em>Você merece todo o amor que existe.</em>
+    </p>
+  </div>
+
+  <div class="signature">
+    <span class="with-love">Com todo o amor,</span>
+    <span class="names">Seu marido,<br>Tito & Luninha 🌸</span>
+  </div>
+
+  <div class="footer-flower">— ✦ —</div>
+</div>
+</body>
+</html>
